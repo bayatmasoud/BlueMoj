@@ -35,7 +35,7 @@ export default function ThemedButton({
   const textStyle = [
     styles.text,
     {
-      color: disabled ? "#666" : "#000",
+      color: disabled ? "#666" : "#ffffffff",
     },
   ];
 

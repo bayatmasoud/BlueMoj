@@ -2,8 +2,10 @@ import RadioButtonGroup from "@/src/components/RadioButtonGroup";
 import ScreenContainer from "@/src/components/ScreenContainer";
 import ThemedButton from "@/src/components/ThemedButton";
 import { ThemedText } from "@/src/components/ThemedText";
-import { createThemedStyles } from "@/utils/themeStylesSheet";
-import { useState } from "react";
+import { createThemedStyles } from "@/src/hooks/utils/themeStylesSheet";
+import configStore from "@/src/stores/configStore";
+import { getLocales } from "expo-localization";
+import { useEffect } from "react";
 import { View } from "react-native";
 
 const options = [
@@ -13,9 +15,15 @@ const options = [
 ];
 
 const CommunitySelection = () => {
-  const [selectedCommunity, setSelectedCommunity] = useState<
-    string | undefined
-  >(undefined);
+  const { setSelectedCommunity, selectedCommunity } = configStore(
+    (state) => state
+  );
+
+  useEffect(() => {
+    if (!selectedCommunity) {
+      setSelectedCommunity(getLocales()?.[0].languageCode || "en");
+    }
+  }, []);
 
   const handleGenderChange = (key: string) => {
     setSelectedCommunity(key);

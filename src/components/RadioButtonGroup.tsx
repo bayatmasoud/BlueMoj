@@ -76,14 +76,14 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   selectedCircle: {
-    backgroundColor: "#51a0efff",
+    backgroundColor: "#000102ff",
   },
   label: {
     fontSize: 16,
     color: "#333",
   },
   selectedLabel: {
-    fontSize: 16,
-    color: "#f80404ff",
+    fontSize: 18,
+    fontWeight: "bold",
   },
 });

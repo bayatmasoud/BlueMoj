@@ -37,7 +37,14 @@ export const Colors = {
   },
 };
 
-export const baseTheme = {
+export const fonts = {
+  regular: { fontFamily: 'System', fontWeight: '400' as const },
+  medium: { fontFamily: 'System', fontWeight: '500' as const },    
+  bold: { fontFamily: 'System', fontWeight: '700' as const },
+  heavy: { fontFamily: 'System', fontWeight: '900' as const },
+};
+
+export const dimensions = {
 ...useDimensions(),
   scales: {
     small: 0.8,
@@ -47,6 +54,8 @@ export const baseTheme = {
 };
 
 export type Theme = {
+  dark: boolean;
   colors: ColorsType;
-  dimensions: typeof baseTheme;
+  dimensions: typeof dimensions;
+  fonts: typeof fonts;
 };

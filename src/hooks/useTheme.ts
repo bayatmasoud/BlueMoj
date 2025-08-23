@@ -1,5 +1,4 @@
-// useTheme.ts
-import { baseTheme, Colors, Theme } from '@/src/constants/Colors';
+import { Colors, dimensions, fonts, Theme } from '@/src/constants/Colors';
 import { useColorScheme } from './useColorScheme';
 
 const useTheme = ():Theme =>{
@@ -7,8 +6,10 @@ const useTheme = ():Theme =>{
   const colors = scheme === 'dark' ? Colors.dark : Colors.light;
 
   return {
+    dark: scheme === 'dark',
     colors,
-    dimensions:baseTheme,
+    dimensions:dimensions,
+    fonts:fonts
   };
 }
 export default useTheme;

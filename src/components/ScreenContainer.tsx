@@ -1,4 +1,4 @@
-import { createThemedStyles } from "@/utils/themeStylesSheet";
+import { createThemedStyles } from "@/src/hooks/utils/themeStylesSheet";
 import React, { ReactNode } from "react";
 import { ScrollView, View } from "react-native";
 
