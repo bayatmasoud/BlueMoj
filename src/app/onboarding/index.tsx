@@ -3,8 +3,9 @@ import ScreenContainer from "@/src/components/ScreenContainer";
 import ThemedButton from "@/src/components/ThemedButton";
 import { ThemedText } from "@/src/components/ThemedText";
 import { createThemedStyles } from "@/src/hooks/utils/themeStylesSheet";
-import configStore from "@/src/stores/configStore";
+import useConfigStore from "@/src/stores/configStore";
 import { getLocales } from "expo-localization";
+import { useRouter } from "expo-router";
 import { useEffect } from "react";
 import { View } from "react-native";
 
@@ -15,7 +16,8 @@ const options = [
 ];
 
 const CommunitySelection = () => {
-  const { setSelectedCommunity, selectedCommunity } = configStore(
+  const router = useRouter();
+  const { setSelectedCommunity, selectedCommunity } = useConfigStore(
     (state) => state
   );
 
@@ -30,7 +32,7 @@ const CommunitySelection = () => {
   };
 
   const handlePress = () => {
-    console.log("Button pressed!");
+    router.replace("../dashboard");
   };
 
   return (

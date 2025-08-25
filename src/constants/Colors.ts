@@ -16,16 +16,18 @@ type ColorsType = {
   icon: string;
   tabIconDefault: string;
   tabIconSelected: string;
+  buttonColor: string
 }
 
 export const Colors = {
   light: {
     text: '#11181C',
-    background: '#ffffffff',
+    background: '#ecececff',
     tint: tintColorLight,
     icon: '#687076',
     tabIconDefault: '#687076',
     tabIconSelected: tintColorLight,
+    buttonColor:'#ffffffff'
   },
   dark: {
     text: '#3080cfff',
@@ -34,6 +36,7 @@ export const Colors = {
     icon: '#9BA1A6',
     tabIconDefault: '#9BA1A6',
     tabIconSelected: tintColorDark,
+    buttonColor:'#ffffffff'
   },
 };
 

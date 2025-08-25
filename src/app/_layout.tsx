@@ -6,24 +6,33 @@ import {
 import { useFonts } from "expo-font";
 import { Stack, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "react-native-reanimated";
 import { useColorScheme } from "../hooks/useColorScheme";
+import useConfigStore from "../stores/configStore";
 
 export default function RootLayout() {
+  const hydrate = useConfigStore((state) => state.hydrate);
+  const [hydrated, setHydrated] = useState(false);
   const colorScheme = useColorScheme();
   const router = useRouter();
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
+  const selectedCommunity = useConfigStore((state) => state.selectedCommunity);
+  console.log(selectedCommunity);
+
+  useEffect(() => {
+    hydrate().then(() => setHydrated(true));
+  }, []);
 
   useEffect(() => {
     if (loaded) {
-      router.replace("/onboarding");
+      router.replace(!!selectedCommunity ? "/(tabs)" : "/onboarding");
     }
   }, [loaded]);
 
-  if (!loaded) {
+  if (!loaded || !hydrated) {
     return null;
   }
 
@@ -33,6 +42,7 @@ export default function RootLayout() {
         <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
         <Stack.Screen name='+not-found' />
         <Stack.Screen name='onboarding' options={{ headerShown: false }} />
+        <Stack.Screen name='settings' options={{ headerShown: false }} />
       </Stack>
       <StatusBar style='auto' />
     </ThemeProvider>
