@@ -1,5 +1,6 @@
 import Header from "@/src/components/Header";
 import ScreenContainer from "@/src/components/ScreenContainer";
+import { ThemedText } from "@/src/components/ThemedText";
 import { IconSymbol } from "@/src/components/ui/IconSymbol.ios";
 import { createThemedStyles } from "@/src/hooks/utils/themeStylesSheet";
 import { Link, useRouter } from "expo-router";
@@ -10,29 +11,29 @@ const Settings = () => {
   const router = useRouter();
   const renderMenuItems = () => {
     return (
-      <View style={styles.linkItem}>
-        <View style={styles.iconTextHolder}>
-          <IconSymbol
-            name='person.2.badge.gearshape'
-            size={25}
-            color={"black"}
-          />
-          <Link href={"/onboarding"}>Change Community</Link>
-        </View>
+      <Link href={"/onboarding"}>
+        <View style={styles.linkItem}>
+          <View style={styles.iconTextHolder}>
+            <IconSymbol
+              name='person.2.badge.gearshape'
+              size={25}
+              color={"black"}
+            />
+            <ThemedText style={styles.textPadding}>Change Community</ThemedText>
+          </View>
 
-        <IconSymbol name='arrow.right' size={15} color={"black"} />
-      </View>
+          <IconSymbol name='arrow.right' size={15} color={"black"} />
+        </View>
+      </Link>
     );
   };
 
   return (
-    <ScreenContainer>
-      <View style={styles.screenContainer}>
-        <View style={styles.responsiveHeader}>
-          <Header title='Setting' backButton />
-          <View style={styles.listContainer}>{renderMenuItems()}</View>
-        </View>
-      </View>
+    <ScreenContainer
+      header={<Header title={"Setting"} backButton color='dark' />}
+      backgroundColor='#dbdbdbff'
+    >
+      <View style={styles.listContainer}>{renderMenuItems()}</View>
     </ScreenContainer>
   );
 };
@@ -42,34 +43,18 @@ const styles = createThemedStyles((theme) => ({
     flex: 1,
     backgroundColor: theme.colors.background,
   },
-  screenContainer: {
-    flex: 1,
-    flexDirection: "column",
-  },
-  headerContext: {
-    marginTop: 20,
-    alignItems: "center",
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  backButton: {
-    flex: 0.08,
-    backgroundColor: theme.colors.buttonColor,
-    padding: 15,
-    alignItems: "center",
-    borderRadius: 10,
-    borderWidth: 0.5,
-  },
+
   listContainer: {
     paddingHorizontal: 10,
     backgroundColor: theme.colors.buttonColor,
-    flex: 1,
+    justifyContent: "flex-start",
+    flex: 0.8,
     flexDirection: "column",
     borderRadius: 20,
+    marginTop: 20,
   },
   linkItem: {
-    flex: 1,
+    flex: 0.1,
     flexDirection: "row",
     justifyContent: "space-between",
     paddingVertical: 10,
@@ -81,8 +66,8 @@ const styles = createThemedStyles((theme) => ({
     flexDirection: "row",
     alignItems: "center",
   },
-  responsiveHeader: { flex: 0.25 },
   titleContainer: { flex: 1, alignItems: "center" },
+  textPadding: { paddingLeft: 10 },
 }));
 
 export default Settings;

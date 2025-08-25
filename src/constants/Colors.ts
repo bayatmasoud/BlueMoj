@@ -6,7 +6,7 @@
 import useDimensions from "../hooks/useDimensions";
 
 
-const tintColorLight = '#0a7ea4';
+const tintColorLight = '#000000ff';
 const tintColorDark = '#fff';
 
 type ColorsType = {
