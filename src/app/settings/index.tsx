@@ -1,10 +1,10 @@
+import Header from "@/src/components/Header";
 import ScreenContainer from "@/src/components/ScreenContainer";
-import { ThemedText } from "@/src/components/ThemedText";
 import { IconSymbol } from "@/src/components/ui/IconSymbol.ios";
 import { createThemedStyles } from "@/src/hooks/utils/themeStylesSheet";
 import { Link, useRouter } from "expo-router";
 import React from "react";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
 
 const Settings = () => {
   const router = useRouter();
@@ -28,15 +28,8 @@ const Settings = () => {
   return (
     <ScreenContainer>
       <View style={styles.screenContainer}>
-        <View style={{ flex: 0.25 }}>
-          <View style={styles.headerContext}>
-            <Pressable onPress={() => router.back()} style={styles.backButton}>
-              <IconSymbol name='arrow.left' size={15} color={"black"} />
-            </Pressable>
-            <View style={{ flex: 1, alignItems: "center" }}>
-              <ThemedText type={"title"}>Settings</ThemedText>
-            </View>
-          </View>
+        <View style={styles.responsiveHeader}>
+          <Header title='Setting' backButton />
           <View style={styles.listContainer}>{renderMenuItems()}</View>
         </View>
       </View>
@@ -88,6 +81,8 @@ const styles = createThemedStyles((theme) => ({
     flexDirection: "row",
     alignItems: "center",
   },
+  responsiveHeader: { flex: 0.25 },
+  titleContainer: { flex: 1, alignItems: "center" },
 }));
 
 export default Settings;

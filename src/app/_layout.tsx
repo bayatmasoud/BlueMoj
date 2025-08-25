@@ -1,26 +1,20 @@
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native";
+import { ThemeProvider, useTheme } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { Stack, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
 import "react-native-reanimated";
-import { useColorScheme } from "../hooks/useColorScheme";
 import useConfigStore from "../stores/configStore";
 
 export default function RootLayout() {
   const hydrate = useConfigStore((state) => state.hydrate);
   const [hydrated, setHydrated] = useState(false);
-  const colorScheme = useColorScheme();
+  const theme = useTheme();
   const router = useRouter();
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
   const selectedCommunity = useConfigStore((state) => state.selectedCommunity);
-  console.log(selectedCommunity);
 
   useEffect(() => {
     hydrate().then(() => setHydrated(true));
@@ -37,7 +31,7 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={theme}>
       <Stack>
         <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
         <Stack.Screen name='+not-found' />

@@ -1,12 +1,11 @@
 import { Colors, dimensions, fonts, Theme } from '@/src/constants/Colors';
-import { useColorScheme } from './useColorScheme';
 
 const useTheme = ():Theme =>{
-  const scheme = useColorScheme() ?? 'light';
-  const colors = scheme === 'dark' ? Colors.dark : Colors.light;
+  const scheme = 'light';
+  const colors = Colors.light;
 
   return {
-    dark: scheme === 'dark',
+    dark: false,
     colors,
     dimensions:dimensions,
     fonts:fonts
