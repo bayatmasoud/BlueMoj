@@ -13,6 +13,7 @@ type HeaderProps = {
   onRightPress?: () => void;
   backIconName?: SymbolViewProps["name"];
   rightIconName?: SymbolViewProps["name"];
+  color?: "light" | "dark";
 };
 
 const Header = ({
@@ -23,6 +24,7 @@ const Header = ({
   backButton,
   rightButton,
   rightIconName,
+  color = "light",
 }: HeaderProps) => {
   const router = useRouter();
   return (
@@ -34,13 +36,18 @@ const Header = ({
         >
           <IconSymbol
             name={backIconName ? backIconName : "arrow.left"}
-            size={15}
+            size={20}
             color={"black"}
           />
         </Pressable>
       )}
       <View style={styles.titleContainer}>
-        <ThemedText type={"default"}>{title}</ThemedText>
+        <ThemedText
+          type={"header"}
+          style={{ color: color === "light" ? "white" : "black" }}
+        >
+          {title}
+        </ThemedText>
       </View>
 
       {rightButton && (
@@ -50,7 +57,7 @@ const Header = ({
         >
           <IconSymbol
             name={rightIconName ? rightIconName : "arrow.right"}
-            size={15}
+            size={20}
             color={"black"}
           />
         </Pressable>
