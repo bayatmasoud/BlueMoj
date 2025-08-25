@@ -8,6 +8,8 @@ type ScreenContainerProps = {
   children: ReactNode;
   scrollable?: boolean;
   style?: object;
+  enabledPaddingHorizontal?: boolean;
+  backgroundColor?: string;
 };
 
 const ScreenContainer: React.FC<ScreenContainerProps> = ({
@@ -16,14 +18,20 @@ const ScreenContainer: React.FC<ScreenContainerProps> = ({
   children,
   scrollable = false,
   style,
+  enabledPaddingHorizontal = true,
+  backgroundColor = "white",
 }) => {
   const Container = scrollable ? ScrollView : View;
 
   return (
-    <View style={styles.root}>
+    <View style={[styles.root, { backgroundColor: backgroundColor }]}>
       {header && <View style={styles.header}>{header}</View>}
       <Container
-        style={[styles.content, style]}
+        style={[
+          styles.content,
+          style,
+          { paddingHorizontal: enabledPaddingHorizontal ? 20 : 0 },
+        ]}
         contentContainerStyle={scrollable ? styles.content : undefined}
         keyboardShouldPersistTaps='handled'
       >
@@ -40,9 +48,8 @@ const styles = createThemedStyles((theme) => ({
     backgroundColor: theme.colors.background,
   },
   header: {
-    paddingHorizontal: 20,
-    paddingTop: 16,
-    paddingBottom: 8,
+    paddingHorizontal: theme.dimensions.xPadding,
+    paddingTop: theme.dimensions.yPadding,
   },
   content: {
     flex: 1,

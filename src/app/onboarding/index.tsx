@@ -27,12 +27,12 @@ const CommunitySelection = () => {
     }
   }, []);
 
-  const handleGenderChange = (key: string) => {
+  const handleCommunityChange = (key: string) => {
     setSelectedCommunity(key);
   };
 
   const handlePress = () => {
-    router.replace("../dashboard");
+    router.replace("../(tabs)");
   };
 
   return (
@@ -52,7 +52,11 @@ const CommunitySelection = () => {
           special community also if in future you need to change the community
           you can change it from the profile screen.
         </ThemedText>
-        <RadioButtonGroup items={options} onChange={handleGenderChange} />
+        <RadioButtonGroup
+          items={options}
+          onChange={handleCommunityChange}
+          defaultKey={selectedCommunity}
+        />
       </View>
     </ScreenContainer>
   );
