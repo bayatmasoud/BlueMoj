@@ -1,5 +1,6 @@
 import Header from "@/src/components/Header";
 import ScreenContainer from "@/src/components/ScreenContainer";
+import { ThemedText } from "@/src/components/ThemedText";
 import { IconSymbol } from "@/src/components/ui/IconSymbol.ios";
 import { createThemedStyles } from "@/src/hooks/utils/themeStylesSheet";
 import { Link, useRouter } from "expo-router";
@@ -10,18 +11,20 @@ const Settings = () => {
   const router = useRouter();
   const renderMenuItems = () => {
     return (
-      <View style={styles.linkItem}>
-        <View style={styles.iconTextHolder}>
-          <IconSymbol
-            name='person.2.badge.gearshape'
-            size={25}
-            color={"black"}
-          />
-          <Link href={"/onboarding"}>Change Community</Link>
-        </View>
+      <Link href={"/onboarding"}>
+        <View style={styles.linkItem}>
+          <View style={styles.iconTextHolder}>
+            <IconSymbol
+              name='person.2.badge.gearshape'
+              size={25}
+              color={"black"}
+            />
+            <ThemedText style={styles.textPadding}>Change Community</ThemedText>
+          </View>
 
-        <IconSymbol name='arrow.right' size={15} color={"black"} />
-      </View>
+          <IconSymbol name='arrow.right' size={15} color={"black"} />
+        </View>
+      </Link>
     );
   };
 
@@ -64,6 +67,7 @@ const styles = createThemedStyles((theme) => ({
     alignItems: "center",
   },
   titleContainer: { flex: 1, alignItems: "center" },
+  textPadding: { paddingLeft: 10 },
 }));
 
 export default Settings;

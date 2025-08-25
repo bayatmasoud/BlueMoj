@@ -108,34 +108,35 @@ const Dashboard = () => {
 
   const renderAds = ({ item }: { item: Advertisement }) => {
     return (
-      <ImageBackground
-        source={item.image}
-        resizeMethod='scale'
-        style={styles.imageStyle}
-        borderRadius={8}
-      >
-        <View style={styles.coverStyle}>
-          <Pressable
-            style={styles.heartContainer}
-            onPress={() => onLinked(item.id)}
-          >
-            {item.isLiked ? (
-              <IconSymbol name='heart.fill' color={"red"} />
-            ) : (
-              <IconSymbol name='heart' color={"black"} />
-            )}
-          </Pressable>
+      <Pressable onPress={() => router.push(`/(tabs)/${item.id}`)}>
+        <ImageBackground
+          source={item.image}
+          resizeMethod='scale'
+          style={styles.imageStyle}
+          borderRadius={8}
+        >
+          <View style={styles.coverStyle}>
+            <Pressable
+              style={styles.heartContainer}
+              onPress={() => onLinked(item.id)}
+            >
+              <IconSymbol
+                name={item.isLiked ? "heart.fill" : "heart"}
+                color={item.isLiked ? "red" : "black"}
+              />
+            </Pressable>
 
-          <View style={{ padding: 5 }}>
-            <ThemedText type='title' style={{ color: "white" }}>
-              {item.title}
-            </ThemedText>
-            <ThemedText type='subtitle' style={{ color: "white" }}>
-              {item.date}
-            </ThemedText>
+            <View style={{ padding: 5 }}>
+              <ThemedText type='title' style={{ color: "white" }}>
+                {item.title}
+              </ThemedText>
+              <ThemedText type='subtitle' style={{ color: "white" }}>
+                {item.date}
+              </ThemedText>
+            </View>
           </View>
-        </View>
-      </ImageBackground>
+        </ImageBackground>
+      </Pressable>
     );
   };
 
