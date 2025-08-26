@@ -64,7 +64,13 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name='[categoryId]'
+        name='category/[categoryId]'
+        options={{
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name='business/[businessId]'
         options={{
           href: null,
         }}
