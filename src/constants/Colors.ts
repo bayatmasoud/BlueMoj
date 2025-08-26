@@ -8,6 +8,7 @@ import useDimensions from "../hooks/useDimensions";
 
 const tintColorLight = '#000000ff';
 const tintColorDark = '#fff';
+const darkGreyBlue = "#294c5aff"
 
 type ColorsType = {
   text: string;
@@ -16,7 +17,9 @@ type ColorsType = {
   icon: string;
   tabIconDefault: string;
   tabIconSelected: string;
-  buttonColor: string
+  buttonColor: string;
+  cover:string
+  headerBackground:string
 }
 
 export const Colors = {
@@ -27,7 +30,9 @@ export const Colors = {
     icon: '#687076',
     tabIconDefault: '#687076',
     tabIconSelected: tintColorLight,
-    buttonColor:'#ffffffff'
+    buttonColor:'#ffffffff',
+    cover:'#363131c8',
+    headerBackground:darkGreyBlue
   },
   dark: {
     text: '#3080cfff',
@@ -36,7 +41,9 @@ export const Colors = {
     icon: '#9BA1A6',
     tabIconDefault: '#9BA1A6',
     tabIconSelected: tintColorDark,
-    buttonColor:'#ffffffff'
+    buttonColor:'#ffffffff',
+    cover:'#363131c8',
+    headerBackground:darkGreyBlue
   },
 };
 

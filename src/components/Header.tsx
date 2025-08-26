@@ -14,6 +14,7 @@ type HeaderProps = {
   backIconName?: SymbolViewProps["name"];
   rightIconName?: SymbolViewProps["name"];
   color?: "light" | "dark";
+  buttonBorderEnable?: boolean;
 };
 
 const Header = ({
@@ -25,6 +26,7 @@ const Header = ({
   rightButton,
   rightIconName,
   color = "light",
+  buttonBorderEnable = true,
 }: HeaderProps) => {
   const router = useRouter();
   return (
@@ -32,7 +34,7 @@ const Header = ({
       {backButton && (
         <Pressable
           onPress={onBackPress ? onBackPress : () => router.back()}
-          style={styles.backButton}
+          style={[styles.backButton, buttonBorderEnable && styles.border]}
         >
           <IconSymbol
             name={backIconName ? backIconName : "arrow.left"}
@@ -53,7 +55,7 @@ const Header = ({
       {rightButton && (
         <Pressable
           onPress={onRightPress ? onRightPress : () => router.back()}
-          style={styles.backButton}
+          style={[styles.backButton, buttonBorderEnable && styles.border]}
         >
           <IconSymbol
             name={rightIconName ? rightIconName : "arrow.right"}
@@ -74,6 +76,8 @@ const styles = createThemedStyles((theme) => ({
     backgroundColor: theme.colors.buttonColor,
     padding: 15,
     alignItems: "center",
+  },
+  border: {
     borderRadius: 10,
     borderWidth: 0.5,
   },
