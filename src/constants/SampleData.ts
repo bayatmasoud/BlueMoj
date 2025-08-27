@@ -18,30 +18,6 @@ export type Advertisement = {
   city:string
 };
 
-// export const categories: Category[] = [
-//   { catName: "Cars", adsCount: 20, iconName: "car.fill", id:1 },
-//   {
-//     catName: "Real Estate",
-//     adsCount: 10,
-//     iconName: "house.fill",
-//      id:2
-//   },
-//   {
-//     catName: "Electronics",
-//     adsCount: 15,
-//     iconName: "light.beacon.max",
-//      id:3
-//   },
-//   {
-//     catName: "Furniture",
-//     adsCount: 5,
-//     iconName: "sofa.fill",
-//      id:4
-//   },
-//   { catName: "Jobs", adsCount: 8, iconName: "gear.badge.checkmark", id:5 },
-//   { catName: "Services", adsCount: 12, iconName: "wheelchair",  id:6 },
-//   { catName: "Events", adsCount: 7, iconName: "calendar", id:7},
-// ];
 
 export const categories: Category[] = [
   {

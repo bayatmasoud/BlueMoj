@@ -26,7 +26,7 @@ const Dashboard = () => {
     return (
       <Pressable
         key={item.id}
-        style={[styles.categoryContainer, index === 0 && { marginLeft: 10 }]}
+        style={[styles.categoryContainer, index === 0 && styles.leftPadding]}
         onPress={() => router.push(`/(tabs)/category/${item.id}`)}
       >
         <IconSymbol name={item.iconName} size={28} color={"black"} />
@@ -72,7 +72,7 @@ const Dashboard = () => {
   );
 };
 
-const styles = createThemedStyles((theme) => ({
+const styles = createThemedStyles(({ colors, dimensions }) => ({
   bodyContainer: {
     flex: 1,
     flexDirection: "column",
@@ -80,7 +80,7 @@ const styles = createThemedStyles((theme) => ({
     borderTopRightRadius: 30,
     marginTop: 20,
     paddingTop: 20,
-    backgroundColor: theme.colors.background,
+    backgroundColor: colors.background,
     alignItems: "center",
   },
   categoryContainer: {
@@ -90,14 +90,14 @@ const styles = createThemedStyles((theme) => ({
     paddingVertical: 10,
     height: 70,
     width: "auto",
-    backgroundColor: "#f0f0f0",
+    backgroundColor: colors.background,
     gap: 5,
     paddingHorizontal: 10,
     marginHorizontal: 5,
     marginVertical: 5,
     borderRadius: 8,
     borderWidth: 0.5,
-    borderColor: "#201515ff",
+    borderColor: colors.borderColor,
   },
   titleContainer: {
     justifyContent: "flex-start",
@@ -107,7 +107,7 @@ const styles = createThemedStyles((theme) => ({
   },
   imageStyle: {
     height: 220,
-    width: theme.dimensions.width / 2 - 20,
+    width: dimensions.width / 2 - 20,
     margin: 5,
     borderRadius: 10,
   },
@@ -115,9 +115,9 @@ const styles = createThemedStyles((theme) => ({
     height: 60,
     position: "absolute",
     bottom: 0,
-    width: theme.dimensions.width / 2 - 20,
+    width: dimensions.width / 2 - 20,
     borderRadius: 8,
-    backgroundColor: "#363131c8",
+    backgroundColor: colors.cover,
     justifyContent: "space-between",
   },
   heartContainer: {
@@ -130,6 +130,7 @@ const styles = createThemedStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
   },
+  leftPadding: { marginLeft: 10 },
 }));
 
 export default Dashboard;

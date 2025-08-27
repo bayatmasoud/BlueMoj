@@ -248,7 +248,7 @@ const DataEntryScreen = () => {
   );
 };
 
-const styles = createThemedStyles((theme) => ({
+const styles = createThemedStyles(({ colors, dimensions }) => ({
   bodyContainer: {
     flex: 1,
     flexDirection: "column",
@@ -261,7 +261,7 @@ const styles = createThemedStyles((theme) => ({
   container: {
     paddingHorizontal: 40,
     paddingTop: 20,
-    width: theme.dimensions.width,
+    width: dimensions.width,
   },
   field: {
     marginBottom: 20,
@@ -276,17 +276,13 @@ const styles = createThemedStyles((theme) => ({
     fontWeight: "600",
     marginBottom: 6,
   },
-  infoIcon: {
-    fontSize: 16,
-    marginLeft: 6,
-  },
   input: {
-    borderWidth: 1,
-    borderColor: "#ccc",
+    borderWidth: 0.5,
+    borderColor: colors.borderColor,
     borderRadius: 8,
     padding: 10,
     fontSize: 16,
-    backgroundColor: "#fff",
+    backgroundColor: colors.background,
   },
   phoneRow: {
     flexDirection: "row",
@@ -299,13 +295,10 @@ const styles = createThemedStyles((theme) => ({
     flex: 1,
   },
   uploadBtn: {
-    backgroundColor: "#eee",
+    backgroundColor: colors.background,
     padding: 10,
     borderRadius: 8,
     alignItems: "center",
-  },
-  uploadText: {
-    color: "#333",
   },
   image: {
     marginTop: 10,
@@ -317,14 +310,8 @@ const styles = createThemedStyles((theme) => ({
     height: 100,
     textAlignVertical: "top",
   },
-  submitBtn: {
-    backgroundColor: "#007AFF",
-    padding: 14,
-    borderRadius: 8,
-    alignItems: "center",
-  },
   error: {
-    color: "#D00",
+    color: colors.error,
   },
   errorSummary: {
     marginBottom: 20,
@@ -332,13 +319,8 @@ const styles = createThemedStyles((theme) => ({
     padding: 10,
     borderRadius: 8,
   },
-  errorTitle: {
-    fontWeight: "600",
-    marginBottom: 6,
-    color: "#900",
-  },
   bulletError: {
-    color: "#900",
+    color: colors.error,
     fontSize: 13,
     marginBottom: 2,
   },

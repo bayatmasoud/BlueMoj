@@ -111,10 +111,10 @@ const BusinessPage = () => {
   );
 };
 
-const styles = createThemedStyles((theme) => ({
+const styles = createThemedStyles(({ colors, dimensions }) => ({
   imageBackgroundContainer: {
     height: "100%",
-    width: theme.dimensions.width,
+    width: dimensions.width,
   },
   likePressAble: {
     height: 30,
@@ -128,23 +128,23 @@ const styles = createThemedStyles((theme) => ({
   contactInformation: {
     position: "absolute",
     bottom: 0,
-    backgroundColor: "#3631317d",
+    backgroundColor: colors.cover,
   },
   contactsContainer: {
     flexDirection: "row",
     gap: 10,
     padding: 5,
-    width: theme.dimensions.width,
+    width: dimensions.width,
   },
   addressContainer: {
     flexDirection: "row",
-    color: theme.colors.background,
-    backgroundColor: theme.colors.headerBackground,
+    color: colors.background,
+    backgroundColor: colors.headerBackground,
     marginRight: 20,
     padding: 10,
     borderRadius: 8,
     gap: 5,
-    width: theme.dimensions.width - 60,
+    width: dimensions.width - 60,
   },
   contextContainer: { textAlign: "justify", paddingTop: 10 },
 }));

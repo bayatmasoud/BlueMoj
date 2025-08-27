@@ -13,14 +13,14 @@ const SavedScreen = () => {
   const likedBusiness = useLikedStore((state) => state.likedBusiness);
   const likedIds = likedBusiness.map((b) => b.businessId);
   const likedAds = ads.filter((ad) => likedIds.includes(ad.id));
-  const theme = useTheme();
+  const { colors } = useTheme();
   const [searchedAds, setSearchedAds] = useState(likedAds);
 
   return (
     <ScreenContainer
       enabledPaddingHorizontal={false}
       header={<Header title='Saved' backButton color='light' />}
-      backgroundColor={theme.colors.headerBackground}
+      backgroundColor={colors.headerBackground}
     >
       <View style={styles.container}>
         <View style={styles.searchBar}>
@@ -37,7 +37,7 @@ const SavedScreen = () => {
   );
 };
 
-const styles = createThemedStyles((theme) => ({
+const styles = createThemedStyles(({ colors, dimensions }) => ({
   container: {
     flex: 1,
     flexDirection: "column",
@@ -45,23 +45,12 @@ const styles = createThemedStyles((theme) => ({
     borderTopRightRadius: 30,
     marginTop: 20,
     paddingTop: 20,
-    backgroundColor: theme.colors.background,
+    backgroundColor: colors.background,
     alignItems: "center",
-  },
-  card: {
-    marginBottom: 12,
-    padding: 12,
-    backgroundColor: "#f2f2f2",
-    borderRadius: 8,
-  },
-  emptyText: {
-    textAlign: "center",
-    color: "#999",
-    marginTop: 40,
   },
   searchBar: {
     padding: 10,
-    width: theme.dimensions.width - 10,
+    width: dimensions.width - 10,
   },
 }));
 
