@@ -2,19 +2,15 @@ import Header from "@/src/components/Header";
 import ScreenContainer from "@/src/components/ScreenContainer";
 import ThemedButton from "@/src/components/ThemedButton";
 import { ThemedText } from "@/src/components/ThemedText";
+import { categories } from "@/src/constants/SampleData";
 import useTheme from "@/src/hooks/useTheme";
 import { createThemedStyles } from "@/src/hooks/utils/themeStylesSheet";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as ImagePicker from "expo-image-picker";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import {
-  Image,
-  ScrollView,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, TextInput, TouchableOpacity, View } from "react-native";
+import DropDownPicker from "react-native-dropdown-picker";
 import schema, { FormData } from "./formSchema";
 
 const DataEntryScreen = () => {
@@ -27,6 +23,14 @@ const DataEntryScreen = () => {
   });
 
   const [imageUri, setImageUri] = useState<string | null>(null);
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState(
+    categories.map((item) => ({
+      label: item.catName,
+      value: item.id.toString(),
+    }))
+  );
 
   const onSubmit = (data: FormData) => {
     console.log("Form submitted:", data);
@@ -54,11 +58,33 @@ const DataEntryScreen = () => {
           size='XLarge'
         />
       }
-      scrollable={false}
+      scrollable
       enabledPaddingHorizontal={false}
     >
       <View style={styles.bodyContainer}>
-        <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.container}>
+          <View style={styles.field}>
+            <ThemedText type='defaultSemiBold'>Category</ThemedText>
+
+            <View style={styles.pickerWrapper}>
+              <DropDownPicker
+                open={open}
+                value={value}
+                items={items}
+                setOpen={setOpen}
+                setValue={setValue}
+                setItems={setItems}
+                placeholder='Select a category'
+                style={{ borderRadius: 0, height: 50 }} // 🔥 No rounded corners
+                dropDownContainerStyle={{ maxHeight: 150 }} // 🔽 Limit visible items
+              />
+            </View>
+            {!value && (
+              <ThemedText style={styles.error} type='subtitle'>
+                {"Please select a category"}
+              </ThemedText>
+            )}
+          </View>
           <View style={styles.field}>
             <View style={styles.labelRow}>
               <ThemedText type='defaultSemiBold'>Full Name</ThemedText>
@@ -242,7 +268,7 @@ const DataEntryScreen = () => {
               ))}
             </View>
           )}
-        </ScrollView>
+        </View>
       </View>
     </ScreenContainer>
   );
@@ -254,8 +280,6 @@ const styles = createThemedStyles(({ colors, dimensions }) => ({
     flexDirection: "column",
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    marginTop: 20,
-    paddingTop: 20,
     alignItems: "center",
   },
   container: {
@@ -282,7 +306,7 @@ const styles = createThemedStyles(({ colors, dimensions }) => ({
     borderRadius: 8,
     padding: 10,
     fontSize: 16,
-    backgroundColor: colors.background,
+    backgroundColor: colors.buttonColor,
   },
   phoneRow: {
     flexDirection: "row",
@@ -323,6 +347,16 @@ const styles = createThemedStyles(({ colors, dimensions }) => ({
     color: colors.error,
     fontSize: 13,
     marginBottom: 2,
+  },
+  pickerWrapper: {
+    borderWidth: 0.5,
+    borderColor: colors.borderColor,
+    borderRadius: 8,
+    backgroundColor: colors.background,
+    height: 50,
+  },
+  picker: {
+    width: "100%",
   },
 }));
 

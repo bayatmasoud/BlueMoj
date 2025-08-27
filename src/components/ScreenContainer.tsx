@@ -28,7 +28,7 @@ const ScreenContainer: React.FC<ScreenContainerProps> = ({
       {header && <View style={styles.header}>{header}</View>}
       <Container
         style={[
-          styles.content,
+          styles.flexOne,
           style,
           { paddingHorizontal: enabledPaddingHorizontal ? 20 : 0 },
         ]}
@@ -52,7 +52,6 @@ const styles = createThemedStyles((theme) => ({
     paddingTop: theme.dimensions.yPadding + 10,
   },
   content: {
-    flex: 1,
     paddingHorizontal: 20,
   },
   footer: {
@@ -60,6 +59,9 @@ const styles = createThemedStyles((theme) => ({
     paddingTop: 8,
     paddingBottom: 16,
     backgroundColor: "transparent",
+  },
+  flexOne: {
+    flex: 1,
   },
 }));
 
