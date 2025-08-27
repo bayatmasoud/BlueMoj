@@ -14,6 +14,8 @@ export type Advertisement = {
   date: string;
   isLiked: boolean;
   id: string | number;
+  catId: string | number;
+  city:string
 };
 
 export const categories: Category[] = [
@@ -48,6 +50,8 @@ export const ads: Advertisement[] = [
     date: "Apr 28 - 2025",
     isLiked: true,
     id: 1,
+    catId:1,
+    city:'Soborg'
   },
   {
     title: "Patogh Resturant",
@@ -55,20 +59,28 @@ export const ads: Advertisement[] = [
     date: "Apr 28 - 2025",
     isLiked: false,
     id: 2,
+    catId:2,
+    city:'Ballerup'
   },
   {
-    title: "Sarv Market",
+    title: "Mr Dentist",
     image: require("../assets/images/sarv.jpeg"),
     date: "Apr 28 - 2025",
     isLiked: false,
     id: 3,
+    catId:2,
+    city:'Copnehagen'
+
   },
   {
-    title: "Patogh Resturant",
+    title: "Abbas Beauty",
     image: require("../assets/images/patogh.jpg"),
     date: "Apr 28 - 2025",
     isLiked: true,
     id: 4,
+    catId:6,
+    city:'Aarhus'
+
   },
 ];
 

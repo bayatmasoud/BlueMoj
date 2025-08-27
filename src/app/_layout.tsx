@@ -3,8 +3,10 @@ import { useFonts } from "expo-font";
 import { Stack, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
+import { PaperProvider } from "react-native-paper";
 import "react-native-reanimated";
 import useConfigStore from "../stores/configStore";
+import useLikedStore from "../stores/likedStore";
 
 export default function RootLayout() {
   const hydrate = useConfigStore((state) => state.hydrate);
@@ -18,6 +20,7 @@ export default function RootLayout() {
 
   useEffect(() => {
     hydrate().then(() => setHydrated(true));
+    useLikedStore.getState().hydrate();
   }, []);
 
   useEffect(() => {
@@ -31,14 +34,17 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={theme}>
-      <Stack>
-        <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
-        <Stack.Screen name='+not-found' />
-        <Stack.Screen name='onboarding' options={{ headerShown: false }} />
-        <Stack.Screen name='settings' options={{ headerShown: false }} />
-      </Stack>
-      <StatusBar style='auto' />
-    </ThemeProvider>
+    <PaperProvider theme={theme}>
+      <ThemeProvider value={theme}>
+        <Stack>
+          <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
+          <Stack.Screen name='+not-found' />
+          <Stack.Screen name='onboarding' options={{ headerShown: false }} />
+          <Stack.Screen name='settings' options={{ headerShown: false }} />
+          <Stack.Screen name='addAd' options={{ headerShown: false }} />
+        </Stack>
+        <StatusBar style='auto' />
+      </ThemeProvider>
+    </PaperProvider>
   );
 }

@@ -59,6 +59,7 @@ const styles = createThemedStyles((theme) => ({
     paddingHorizontal: 20,
     paddingTop: 8,
     paddingBottom: 16,
+    backgroundColor: "transparent",
   },
 }));
 

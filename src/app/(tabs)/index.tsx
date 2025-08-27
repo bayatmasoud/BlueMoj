@@ -36,8 +36,11 @@ const Dashboard = () => {
         <Header
           title={"Home"}
           rightButton
-          rightIconName='gearshape.fill'
+          rightIconName='person'
           onRightPress={settingHandler}
+          backButton
+          backIconName='plus'
+          onBackPress={() => router.navigate("/addAd")}
         />
       }
       backgroundColor='#294c5aff'
