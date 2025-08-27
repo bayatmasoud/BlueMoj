@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FlatList } from "react-native";
 import { Advertisement } from "../constants/SampleData";
+import useLikedStore from "../stores/likedStore";
 import AdsCard from "./AdsCard";
 
 type AdsListProps = {
@@ -9,6 +10,7 @@ type AdsListProps = {
 
 const AdsList = ({ ads }: AdsListProps) => {
   const [adsHolder, setAdsHolder] = useState<Advertisement[]>(ads);
+  const toggleLike = useLikedStore((state) => state.toggleLike);
 
   useEffect(() => {
     setAdsHolder(ads);
@@ -24,6 +26,7 @@ const AdsList = ({ ads }: AdsListProps) => {
       setAdsHolder((prevAds) =>
         prevAds.map((item) => (item.id === id ? updatedItem : item))
       );
+      toggleLike(selectedItem.id, selectedItem.catId);
     }
   };
   const renderAds = ({
@@ -42,7 +45,14 @@ const AdsList = ({ ads }: AdsListProps) => {
       />
     );
   };
-  return <FlatList data={adsHolder} renderItem={renderAds} numColumns={2} />;
+  return (
+    <FlatList
+      data={adsHolder}
+      renderItem={renderAds}
+      numColumns={2}
+      showsVerticalScrollIndicator={false}
+    />
+  );
 };
 
 export default AdsList;

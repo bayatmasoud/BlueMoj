@@ -37,7 +37,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name='explore'
+        name='saved'
         options={{
           title: "saved",
           tabBarIcon: ({ color }) => (
@@ -46,9 +46,9 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name='contacts'
+        name='myAdds'
         options={{
-          title: "Contacts",
+          title: "My Adds",
           tabBarIcon: ({ color }) => (
             <IconSymbol size={25} name='note.text' color={color} />
           ),

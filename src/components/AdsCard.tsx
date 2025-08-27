@@ -3,6 +3,7 @@ import React from "react";
 import { ImageBackground, Pressable, View } from "react-native";
 import { Advertisement } from "../constants/SampleData";
 import { createThemedStyles } from "../hooks/utils/themeStylesSheet";
+import useLikedStore from "../stores/likedStore";
 import { ThemedText } from "./ThemedText";
 import { IconSymbol } from "./ui/IconSymbol";
 
@@ -15,11 +16,12 @@ type AdsCardProps = {
 
 const AdsCard = ({ item, index, adsLength, onLinked }: AdsCardProps) => {
   const router = useRouter();
-
+  const likedBusiness = useLikedStore((state) => state.isLiked);
+  const isLiked = likedBusiness(item.id);
   return (
     <Pressable
       onPress={() => router.push(`/(tabs)/business/${item.id}`)}
-      style={index === adsLength - 1 && { paddingBottom: 50 }}
+      style={[index === adsLength - 1 && { paddingBottom: 50 }]}
     >
       <ImageBackground
         source={item.image}
@@ -32,8 +34,8 @@ const AdsCard = ({ item, index, adsLength, onLinked }: AdsCardProps) => {
           onPress={() => onLinked(item.id)}
         >
           <IconSymbol
-            name={item.isLiked ? "heart.fill" : "heart"}
-            color={item.isLiked ? "red" : "black"}
+            name={isLiked ? "heart.fill" : "heart"}
+            color={isLiked ? "red" : "black"}
             size={20}
           />
         </Pressable>
@@ -44,6 +46,9 @@ const AdsCard = ({ item, index, adsLength, onLinked }: AdsCardProps) => {
             </ThemedText>
             <ThemedText type='subtitle' style={{ color: "white" }}>
               {item.date}
+            </ThemedText>
+            <ThemedText type='subtitle' style={{ color: "white" }}>
+              {item.city}
             </ThemedText>
           </View>
         </View>
@@ -69,7 +74,7 @@ const styles = createThemedStyles((theme) => ({
     alignItems: "center",
   },
   coverStyle: {
-    height: 60,
+    height: 70,
     position: "absolute",
     bottom: 0,
     width: theme.dimensions.width / 2 - 20,

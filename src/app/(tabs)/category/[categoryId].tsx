@@ -10,7 +10,7 @@ import {
 } from "@/src/constants/SampleData";
 import useTheme from "@/src/hooks/useTheme";
 import { createThemedStyles } from "@/src/hooks/utils/themeStylesSheet";
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 
@@ -33,6 +33,7 @@ const Category = () => {
           backButton
           rightButton
           rightIconName='plus'
+          onRightPress={() => router.navigate("/addAd")}
         />
       }
       backgroundColor={theme.colors.headerBackground}
@@ -42,8 +43,9 @@ const Category = () => {
         <View style={styles.searchBarContainer}>
           <SearchBar
             data={ads}
-            searchKey={"title"}
+            searchKeys={["title", "city"]}
             onResults={setAdvertisements}
+            placeHolder='Search City or advertisement title...'
           />
         </View>
 
