@@ -1,11 +1,8 @@
+import ThemedButton from "@/src/components/ThemedButton";
+import { ThemedText } from "@/src/components/ThemedText";
+import { createThemedStyles } from "@/src/hooks/utils/themeStylesSheet";
 import React from "react";
-import {
-  Linking,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Linking, View } from "react-native";
 
 const SupportScreen = () => {
   const openTelegram = () => {
@@ -22,37 +19,46 @@ const SupportScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>🛠️ Need Help?</Text>
-      <Text style={styles.subtitle}>
+      <ThemedText style={styles.title} type='title'>
+        🛠️ Need Help?
+      </ThemedText>
+      <ThemedText style={styles.subtitle}>
         If you're having any issues or questions, feel free to reach out to us
         through one of the following:
-      </Text>
+      </ThemedText>
 
-      <TouchableOpacity style={styles.button} onPress={openTelegram}>
-        <Text style={styles.buttonText}>💬 Contact via Telegram</Text>
-      </TouchableOpacity>
+      <ThemedButton
+        text='💬 Contact via Telegram'
+        onPress={openTelegram}
+        size='XLarge'
+      />
 
-      <TouchableOpacity style={styles.button} onPress={openWhatsApp}>
-        <Text style={styles.buttonText}>📱 Contact via WhatsApp</Text>
-      </TouchableOpacity>
+      <ThemedButton
+        text='📱 Contact via WhatsApp'
+        onPress={openWhatsApp}
+        size='XLarge'
+      />
 
-      <TouchableOpacity style={styles.button} onPress={sendEmail}>
-        <Text style={styles.buttonText}>📧 Send us an Email</Text>
-      </TouchableOpacity>
+      <ThemedButton
+        text='📧 Send us an Email'
+        onPress={sendEmail}
+        size='XLarge'
+      />
 
-      <Text style={styles.footer}>
+      <ThemedText type='subtitle' style={styles.footer}>
         We're available 7 days a week and happy to help!
-      </Text>
+      </ThemedText>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
+const styles = createThemedStyles(({ colors, dimensions }) => ({
   container: {
     flex: 1,
     padding: 24,
-    backgroundColor: "#f9f9f9",
+    backgroundColor: colors.background,
     justifyContent: "center",
+    gap: 10,
   },
   title: {
     fontSize: 28,
@@ -64,25 +70,23 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 24,
     textAlign: "center",
-    color: "#555",
+    color: colors.text,
   },
   button: {
-    backgroundColor: "#007AFF",
+    backgroundColor: colors.buttonColor,
     padding: 14,
     borderRadius: 8,
     marginVertical: 8,
     alignItems: "center",
   },
   buttonText: {
-    color: "#fff",
+    color: colors.text,
     fontSize: 16,
   },
   footer: {
     marginTop: 32,
-    fontSize: 14,
     textAlign: "center",
-    color: "#888",
   },
-});
+}));
 
 export default SupportScreen;
