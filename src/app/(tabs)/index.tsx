@@ -6,7 +6,7 @@ import { ads, categories, Category } from "@/src/constants/SampleData";
 import { createThemedStyles } from "@/src/hooks/utils/themeStylesSheet";
 import { useRouter } from "expo-router";
 import React from "react";
-import { FlatList, Pressable, Text, View } from "react-native";
+import { FlatList, Pressable, View } from "react-native";
 import ScreenContainer from "../../components/ScreenContainer";
 
 const Dashboard = () => {
@@ -16,15 +16,21 @@ const Dashboard = () => {
     router.push("/settings");
   };
 
-  const renderCategories = ({ item }: { item: Category }) => {
+  const renderCategories = ({
+    item,
+    index,
+  }: {
+    item: Category;
+    index: number;
+  }) => {
     return (
       <Pressable
-        key={item.catName}
-        style={styles.categoryContainer}
+        key={item.id}
+        style={[styles.categoryContainer, index === 0 && { marginLeft: 10 }]}
         onPress={() => router.push(`/(tabs)/category/${item.id}`)}
       >
         <IconSymbol name={item.iconName} size={28} color={"black"} />
-        <Text>{item.catName}</Text>
+        <ThemedText type='subtitle'>{item.catName}</ThemedText>
       </Pressable>
     );
   };
@@ -83,7 +89,7 @@ const styles = createThemedStyles((theme) => ({
     alignItems: "center",
     paddingVertical: 10,
     height: 70,
-    width: 100,
+    width: "auto",
     backgroundColor: "#f0f0f0",
     gap: 5,
     paddingHorizontal: 10,

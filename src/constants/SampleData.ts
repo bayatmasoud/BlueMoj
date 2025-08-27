@@ -18,30 +18,118 @@ export type Advertisement = {
   city:string
 };
 
+// export const categories: Category[] = [
+//   { catName: "Cars", adsCount: 20, iconName: "car.fill", id:1 },
+//   {
+//     catName: "Real Estate",
+//     adsCount: 10,
+//     iconName: "house.fill",
+//      id:2
+//   },
+//   {
+//     catName: "Electronics",
+//     adsCount: 15,
+//     iconName: "light.beacon.max",
+//      id:3
+//   },
+//   {
+//     catName: "Furniture",
+//     adsCount: 5,
+//     iconName: "sofa.fill",
+//      id:4
+//   },
+//   { catName: "Jobs", adsCount: 8, iconName: "gear.badge.checkmark", id:5 },
+//   { catName: "Services", adsCount: 12, iconName: "wheelchair",  id:6 },
+//   { catName: "Events", adsCount: 7, iconName: "calendar", id:7},
+// ];
+
 export const categories: Category[] = [
-  { catName: "Cars", adsCount: 20, iconName: "car.fill", id:1 },
+  {
+    catName: "Retails",
+    adsCount: 120,
+    iconName: "building",
+    id: 1
+  },
+  {
+    catName: "Food & Drink",
+    adsCount: 95,
+    iconName: "fork.knife",
+    id: 2
+  },
+  {
+    catName: "Health",
+    adsCount: 80,
+    iconName: "bolt.heart.fill",
+    id: 3
+  },
+  {
+    catName: "Services",
+    adsCount: 60,
+    iconName: "wrench.and.screwdriver",
+    id: 4
+  },
+  {
+    catName: "Education",
+    adsCount: 50,
+    iconName: "graduationcap",
+    id: 6
+  },
+  {
+    catName: "Automotive",
+    adsCount: 70,
+    iconName: "car",
+    id: 7
+  },
+  {
+    catName: "Events",
+    adsCount: 65,
+    iconName: "calendar",
+    id: 8
+  },
+  {
+    catName: "Second hand",
+    adsCount: 40,
+    iconName: "sofa",
+    id: 9
+  },
+  {
+    catName: "Technology & IT",
+    adsCount: 55,
+    iconName: "laptopcomputer",
+    id: 10
+  },
+  {
+    catName: "Travel",
+    adsCount: 45,
+    iconName: "airplane",
+    id: 11
+  },
+  {
+    catName: "Transport",
+    adsCount: 35,
+    iconName: "truck.box",
+    id: 12
+  },
+  {
+    catName: "Jobs",
+    adsCount: 30,
+    iconName: "person.badge.clock",
+    id: 13
+  },
+  {
+    catName: "Public Services",
+    adsCount: 25,
+    iconName: "person.3.sequence",
+    id: 14
+  },
   {
     catName: "Real Estate",
-    adsCount: 10,
-    iconName: "house.fill",
-     id:2
-  },
-  {
-    catName: "Electronics",
-    adsCount: 15,
-    iconName: "light.beacon.max",
-     id:3
-  },
-  {
-    catName: "Furniture",
-    adsCount: 5,
-    iconName: "sofa.fill",
-     id:4
-  },
-  { catName: "Jobs", adsCount: 8, iconName: "gear.badge.checkmark", id:5 },
-  { catName: "Services", adsCount: 12, iconName: "wheelchair",  id:6 },
-  { catName: "Events", adsCount: 7, iconName: "calendar", id:7},
+    adsCount: 50,
+    iconName: "house.and.flag",
+    id: 15
+  }
 ];
+
 
 export const ads: Advertisement[] = [
   {

@@ -49,7 +49,7 @@ const styles = createThemedStyles((theme) => ({
   },
   header: {
     paddingHorizontal: theme.dimensions.xPadding,
-    paddingTop: theme.dimensions.yPadding,
+    paddingTop: theme.dimensions.yPadding + 10,
   },
   content: {
     flex: 1,
