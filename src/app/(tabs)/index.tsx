@@ -3,6 +3,7 @@ import Header from "@/src/components/Header";
 import { ThemedText } from "@/src/components/ThemedText";
 import { IconSymbol } from "@/src/components/ui/IconSymbol";
 import { ads, categories, Category } from "@/src/constants/SampleData";
+import useTheme from "@/src/hooks/useTheme";
 import { createThemedStyles } from "@/src/hooks/utils/themeStylesSheet";
 import { useRouter } from "expo-router";
 import React from "react";
@@ -11,6 +12,7 @@ import ScreenContainer from "../../components/ScreenContainer";
 
 const Dashboard = () => {
   const router = useRouter();
+  const { colors } = useTheme();
 
   const settingHandler = () => {
     router.push("/settings");
@@ -49,7 +51,7 @@ const Dashboard = () => {
           onRightPress={() => router.navigate("/addAd")}
         />
       }
-      backgroundColor='#294c5aff'
+      backgroundColor={colors.headerBackground}
     >
       <View style={styles.bodyContainer}>
         <View style={styles.titleContainer}>
@@ -134,4 +136,3 @@ const styles = createThemedStyles(({ colors, dimensions }) => ({
 }));
 
 export default Dashboard;
-// Removed unused uri function
