@@ -42,11 +42,11 @@ const Dashboard = () => {
         <Header
           title={"Home"}
           rightButton
-          rightIconName='person'
-          onRightPress={settingHandler}
+          backIconName='person'
+          onBackPress={settingHandler}
           backButton
-          backIconName='plus'
-          onBackPress={() => router.navigate("/addAd")}
+          rightIconName='plus'
+          onRightPress={() => router.navigate("/addAd")}
         />
       }
       backgroundColor='#294c5aff'
