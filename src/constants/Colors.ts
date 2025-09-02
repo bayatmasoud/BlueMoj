@@ -19,7 +19,9 @@ type ColorsType = {
   tabIconSelected: string;
   buttonColor: string;
   cover:string
-  headerBackground:string
+  headerBackground:string;
+  borderColor:string;
+  error:string;
 }
 
 export const Colors = {
@@ -32,7 +34,9 @@ export const Colors = {
     tabIconSelected: tintColorLight,
     buttonColor:'#ffffffff',
     cover:'#363131c8',
-    headerBackground:darkGreyBlue
+    headerBackground:darkGreyBlue,
+    borderColor: "#201515ff",
+    error:"#900"
   },
   dark: {
     text: '#3080cfff',
@@ -43,7 +47,10 @@ export const Colors = {
     tabIconSelected: tintColorDark,
     buttonColor:'#ffffffff',
     cover:'#363131c8',
-    headerBackground:darkGreyBlue
+    headerBackground:darkGreyBlue,
+    borderColor: "#201515ff",
+    error:"#900"
+
   },
 };
 

@@ -55,7 +55,7 @@ const Category = () => {
   );
 };
 
-const styles = createThemedStyles((theme) => ({
+const styles = createThemedStyles(({ colors, dimensions }) => ({
   bodyContainer: {
     flex: 1,
     flexDirection: "column",
@@ -63,7 +63,7 @@ const styles = createThemedStyles((theme) => ({
     borderTopRightRadius: 30,
     marginTop: 20,
     paddingTop: 20,
-    backgroundColor: theme.colors.background,
+    backgroundColor: colors.background,
     alignItems: "center",
   },
   categoryContainer: {
@@ -73,24 +73,24 @@ const styles = createThemedStyles((theme) => ({
     paddingVertical: 10,
     height: 70,
     width: 100,
-    backgroundColor: theme.colors.background,
+    backgroundColor: colors.background,
     gap: 5,
     paddingHorizontal: 10,
     marginHorizontal: 5,
     marginVertical: 5,
     borderRadius: 8,
     borderWidth: 0.5,
-    borderColor: theme.colors.icon,
+    borderColor: colors.icon,
   },
   titleContainer: {
     justifyContent: "flex-start",
-    width: "100%",
+    width: dimensions.width,
     paddingLeft: 20,
     marginBottom: 10,
   },
   imageStyle: {
     height: 220,
-    width: theme.dimensions.width / 2 - 20,
+    width: dimensions.width / 2 - 20,
     margin: 5,
     borderRadius: 10,
   },
@@ -98,15 +98,15 @@ const styles = createThemedStyles((theme) => ({
     height: 60,
     position: "absolute",
     bottom: 0,
-    width: theme.dimensions.width / 2 - 20,
+    width: dimensions.width / 2 - 20,
     borderRadius: 8,
-    backgroundColor: theme.colors.cover,
+    backgroundColor: colors.cover,
     justifyContent: "space-between",
   },
   heartContainer: {
     height: 25,
     width: 25,
-    backgroundColor: theme.colors.background,
+    backgroundColor: colors.background,
     borderRadius: 180,
     alignSelf: "flex-end",
     margin: 5,
@@ -115,7 +115,7 @@ const styles = createThemedStyles((theme) => ({
   },
   searchBarContainer: {
     padding: 10,
-    width: theme.dimensions.width,
+    width: dimensions.width,
   },
 }));
 

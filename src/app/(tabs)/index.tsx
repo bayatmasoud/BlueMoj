@@ -3,28 +3,36 @@ import Header from "@/src/components/Header";
 import { ThemedText } from "@/src/components/ThemedText";
 import { IconSymbol } from "@/src/components/ui/IconSymbol";
 import { ads, categories, Category } from "@/src/constants/SampleData";
+import useTheme from "@/src/hooks/useTheme";
 import { createThemedStyles } from "@/src/hooks/utils/themeStylesSheet";
 import { useRouter } from "expo-router";
 import React from "react";
-import { FlatList, Pressable, Text, View } from "react-native";
+import { FlatList, Pressable, View } from "react-native";
 import ScreenContainer from "../../components/ScreenContainer";
 
 const Dashboard = () => {
   const router = useRouter();
+  const { colors } = useTheme();
 
   const settingHandler = () => {
     router.push("/settings");
   };
 
-  const renderCategories = ({ item }: { item: Category }) => {
+  const renderCategories = ({
+    item,
+    index,
+  }: {
+    item: Category;
+    index: number;
+  }) => {
     return (
       <Pressable
-        key={item.catName}
-        style={styles.categoryContainer}
+        key={item.id}
+        style={[styles.categoryContainer, index === 0 && styles.leftPadding]}
         onPress={() => router.push(`/(tabs)/category/${item.id}`)}
       >
         <IconSymbol name={item.iconName} size={28} color={"black"} />
-        <Text>{item.catName}</Text>
+        <ThemedText type='subtitle'>{item.catName}</ThemedText>
       </Pressable>
     );
   };
@@ -36,14 +44,14 @@ const Dashboard = () => {
         <Header
           title={"Home"}
           rightButton
-          rightIconName='person'
-          onRightPress={settingHandler}
+          backIconName='person'
+          onBackPress={settingHandler}
           backButton
-          backIconName='plus'
-          onBackPress={() => router.navigate("/addAd")}
+          rightIconName='plus'
+          onRightPress={() => router.navigate("/addAd")}
         />
       }
-      backgroundColor='#294c5aff'
+      backgroundColor={colors.headerBackground}
     >
       <View style={styles.bodyContainer}>
         <View style={styles.titleContainer}>
@@ -66,7 +74,7 @@ const Dashboard = () => {
   );
 };
 
-const styles = createThemedStyles((theme) => ({
+const styles = createThemedStyles(({ colors, dimensions }) => ({
   bodyContainer: {
     flex: 1,
     flexDirection: "column",
@@ -74,7 +82,7 @@ const styles = createThemedStyles((theme) => ({
     borderTopRightRadius: 30,
     marginTop: 20,
     paddingTop: 20,
-    backgroundColor: theme.colors.background,
+    backgroundColor: colors.background,
     alignItems: "center",
   },
   categoryContainer: {
@@ -83,15 +91,15 @@ const styles = createThemedStyles((theme) => ({
     alignItems: "center",
     paddingVertical: 10,
     height: 70,
-    width: 100,
-    backgroundColor: "#f0f0f0",
+    width: "auto",
+    backgroundColor: colors.background,
     gap: 5,
     paddingHorizontal: 10,
     marginHorizontal: 5,
     marginVertical: 5,
     borderRadius: 8,
     borderWidth: 0.5,
-    borderColor: "#201515ff",
+    borderColor: colors.borderColor,
   },
   titleContainer: {
     justifyContent: "flex-start",
@@ -101,7 +109,7 @@ const styles = createThemedStyles((theme) => ({
   },
   imageStyle: {
     height: 220,
-    width: theme.dimensions.width / 2 - 20,
+    width: dimensions.width / 2 - 20,
     margin: 5,
     borderRadius: 10,
   },
@@ -109,9 +117,9 @@ const styles = createThemedStyles((theme) => ({
     height: 60,
     position: "absolute",
     bottom: 0,
-    width: theme.dimensions.width / 2 - 20,
+    width: dimensions.width / 2 - 20,
     borderRadius: 8,
-    backgroundColor: "#363131c8",
+    backgroundColor: colors.cover,
     justifyContent: "space-between",
   },
   heartContainer: {
@@ -124,7 +132,7 @@ const styles = createThemedStyles((theme) => ({
     justifyContent: "center",
     alignItems: "center",
   },
+  leftPadding: { marginLeft: 10 },
 }));
 
 export default Dashboard;
-// Removed unused uri function

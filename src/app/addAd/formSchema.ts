@@ -8,9 +8,11 @@ export type FormData = {
   description: string;
   address:string;
   city:string;
+  category:string;
 };
 
 const schema = yup.object().shape({
+  category: yup.string().required("Please select a category"),
   fullName: yup.string().required("Full name is required"),
   address: yup.string().required("address is required"),
   city: yup.string().required("City is required"),
